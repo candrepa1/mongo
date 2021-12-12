@@ -1,12 +1,22 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 mongoose.connect(
 	"mongodb+srv://candrepa1:Progposs2021@freecodecamp.sa0fx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
 	{ useNewUrlParser: true, useUnifiedTopology: true }
 );
 
-let Person;
+const personSchema = new Schema({
+	name: {
+		type: String,
+		required: true,
+	},
+	age: Number,
+	favoriteFoods: [String],
+});
+
+const Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
 	done(null /*, data*/);
